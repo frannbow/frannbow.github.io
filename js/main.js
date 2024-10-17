@@ -6,7 +6,12 @@ const btnCancelar = document.querySelector('#btnCancelar')
 const btnSubir = document.querySelector('#btnSubir')
 const nuevaimg = document.querySelector('img#nuevaimg')
 const nuevotitulo = document.querySelector('input#newtitulo')
-
+const posteliminar = {
+    id : "",
+    title: "",
+    img:"",
+    fecha_hora:""
+}
 const posts = []//guardo los posts de forma local, usar esto en lugar de posting para tener datos de API
 
 //------inicializar camara---------------//
@@ -64,11 +69,11 @@ function obtenerPosts(){
 function generadorCard(post){
     //reempplazar posting.id y demas por el json que contenga los posts
     return `
-                <div class="card">
+                <div class="card" id="${post.id}">
                     <h2 id="titulo">${post.title}</h2>
                     <img id="foto" src=${post.img} alt="Imagen genérica">
                     <p id="fecha-hora">Fecha y hora:${post.fecha_hora}</p>
-                    
+                    <button class="btnborrar"id="${post.id}"><i class="fa fa-trash"></i></button>
                 </div>
             `
 }
@@ -98,6 +103,7 @@ function crearPosts (){
             cardPosts += generadorCard(post)
         })
         contenedor.innerHTML = cardPosts
+        deletePost()
     }
     else{
         contenedor.innerHTML = noPost()
@@ -143,6 +149,56 @@ function  subirPost(){
     })// una vez que se cargue el post de la API a la variable local ejecuto obtener post para mostrarlo en e home, se puede optimizar?*
     .catch((error)=>console.log(error))
 }
+//----------Eliminar post------------------//
+
+
+function  deletePost(){
+    const btnborrar = document.querySelectorAll('button.btnborrar')
+    console.log(btnborrar)
+    if (btnborrar.length > 0){
+        btnborrar.forEach((boton)=>{
+            boton.addEventListener('click',()=>{
+                const confirmacion = confirm('¿Estás seguro de que deseas eliminar este elemento?');
+                if (confirmacion){
+                    let postselect = posts.find((post)=>post.id === boton.id)
+                posteliminar.id = postselect.id
+                posteliminar.title = postselect.title
+                posteliminar.img = postselect.img
+                posteliminar.fecha_hora = postselect.fecha_hora
+                console.log(posteliminar)
+                const opciones = {
+                    method: 'DELETE',
+                    headers:{'Content-type':'application/json'}
+                }
+                fetch(`${urlposts}/${posteliminar.id}`, opciones)
+                .then((response)=>{
+                    if (response.ok){
+                        return response.json()
+                    }
+                    else{
+                        throw new Error('no se pudo borrar ')
+                    }
+                
+                })
+                .then((data)=>{
+                    posteliminar.length = 0
+                    posts.length = 0
+                    obtenerPosts()
+                    console.log("eliminado")
+                    
+                })// una vez que se cargue el post de la API a la variable local ejecuto obtener post para mostrarlo en e home, se puede optimizar?*
+                .catch((error)=>console.log(error))
+                }
+                
+            })
+           
+        })
+    }
+
+}
+
+
+
 
 //-----------------convertir img a Base64----------------//
 
@@ -189,6 +245,7 @@ btnSubir.addEventListener('click',()=>{
     subirPost()
     localStorage.clear()
 })
+
 
 window.onload = obtenerPosts()
 
