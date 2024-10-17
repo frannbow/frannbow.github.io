@@ -1,0 +1,32 @@
+{
+    "short_name":"Minstagram",
+    "name":"Minstagram fotos",
+    "version":"1.0.1",
+    "start_url": "/index.html",
+    "background_color":"#bc1888",
+    "theme_color":"#f09433",
+    "description":"Es una app de prueba",
+    "scope":"/",
+    "display":"standalone",
+    "orientation":"portrait",
+    "id":"/",
+    "icons":[
+        {
+            "src":"./img/camara-64.png",
+            "type": "image/png",
+            "sizes":"64x64"
+        },
+        {
+            "src":"./img/camara-128.png",
+            "type": "image/png",
+            "sizes":"128x128"
+        },
+        {
+            "src":"./img/camara-256.png",
+            "type": "image/png",
+            "sizes":"256x256"
+        }
+    ],
+    "screenshots":""
+}
+

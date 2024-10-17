@@ -1,0 +1,270 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic");
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+/* Header */
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+h1 {
+    margin: 0;
+    left: 50%;
+    transform: translateX(-35%);
+    font-size: 24px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Main content */
+main {
+    margin-top: 18%; /* Para no solapar con el header */
+    margin-bottom: 18%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 180px); /* Restar espacio del header y footer */
+    
+}
+
+.card {
+    text-align: left;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+.card h2 {
+    margin: 0 0 10px 0; /* Margen inferior para el espacio entre el título y el contenido */
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+}
+
+.card p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+.card img{
+    display: block;       /* Hace que la imagen se comporte como un bloque */
+    margin: 20px auto;     /* Márgenes automáticos para centrar horizontalmente */
+    max-width: 100%;       /* Para que la imagen no sobrepase el ancho de la tarjeta */
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+
+dialog{
+
+    margin: 20px auto;     /* Márgenes automáticos para centrar horizontalmente */
+    max-width: 80%;       /* Para que la imagen no sobrepase el ancho de la tarjeta */
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+
+    & input{
+        display: flex;
+    }
+    & img{
+        object-fit: contain;
+        object-position: center;   
+    }
+
+}
+#botones{
+
+    align-items: center;
+    bottom: 20%;
+}
+#btnSubir{
+    top: 0rem;
+    display: flex;
+    background-color: green;
+    border: 0px;
+    position: relative;
+    right: -80%;
+}
+#btnCancelar{
+    top: 5rem;
+    background-color: white;
+    border: red solid 2px;
+    color: red;
+    position: relative;
+    left: 5%;
+
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7.5%;
+    border-radius: 100px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.footer-container {
+    width: 25%;
+    text-align: center;
+}
+
+.camera-logo {
+    width: 2vw; /* Tamaño reducido del logo en pantallas grandes */
+}
+
+@media (max-width: 1024px){
+    main{   
+        margin-top: 30%; 
+        margin-bottom: 30%;
+    }
+    .camera-logo {
+        width: 4vw; /* Aumentar un poco el tamaño del logo en pantallas medianas */
+    }
+    h1{
+        transform: translate(-25%);
+    }
+    footer{
+        width: 15%;
+    }
+}
+/* Responsive Design */
+@media (max-width: 820px) {
+    .footer-container {
+        width: 90%; /* Ajuste del ancho en tablets */
+    }
+
+    .camera-logo {
+        width: 4vw; /* Aumentar un poco el tamaño del logo en pantallas medianas */
+    }
+    main{
+        margin-top: 40%; 
+        margin-bottom: 40%;
+    }
+    h1{
+        transform: translate(-25%);
+    }
+    footer{
+        width: 15%;
+    }
+}
+.nopost{
+    margin-top: 18%; /* Para no solapar con el header */
+    margin-bottom: 18%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 180px); /* Restar espacio del header y footer */
+}
+
+@media (max-width: 500px) {
+    .footer-container {
+        width: 100%; /* 100% de ancho en pantallas pequeñas */
+    }
+
+    .camera-logo {
+        width: 6vw; /* Aumentar un poco el tamaño en pantallas pequeñas para mejor visibilidad */
+    }
+    .card{
+        width: 90%;
+    }
+    main{
+        margin-top: 60%; 
+        margin-bottom: 60%;
+    }
+    h1{
+        transform: translate(-25%);
+    }
+    footer{
+        width: 20%;
+    }
+    .nopost{
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+    #btnSubir{
+        top: 0rem;
+        display: flex;
+        background-color: green;
+        border: 0px;
+        position: relative;
+        right: -65%;
+    }
+    #btnCancelar{
+        top: 5rem;
+        background-color: white;
+        border: red solid 2px;
+        color: red;
+        position: relative;
+        left: 5%;
+    
+    }
+}
+@media (max-width: 375px) {
+    .footer-container {
+        width: 100%; /* 100% de ancho en pantallas pequeñas */
+    }
+
+    .camera-logo {
+        width: 10vw; /* Aumentar un poco el tamaño en pantallas pequeñas para mejor visibilidad */
+    }
+    .card{
+        width: 90%;
+    }
+    main{
+        margin-top: 80%; 
+        margin-bottom: 80%;
+    }
+    h1{
+        transform: translate(-25%);
+    }
+    footer{
+        width: 30%;
+    }
+}
+@media (max-width: 344px) {
+    .footer-container {
+        width: 100%; /* 100% de ancho en pantallas pequeñas */
+    }
+
+    .camera-logo {
+        width: 10vw; /* Aumentar un poco el tamaño en pantallas pequeñas para mejor visibilidad */
+    }
+    .card{
+        width: 90%;
+    }
+    main{
+        margin-top: 50%; 
+        margin-bottom: 50%;
+    }
+    h1{
+        transform: translate(-25%);
+    }
+    footer{
+        width: 30%;
+    }
+}
