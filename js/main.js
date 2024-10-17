@@ -14,7 +14,7 @@ const inputCamara = document.createElement('input')
 inputCamara.type = 'file'
 inputCamara.id = 'inputFile'
 inputCamara.accept = '.png, .jpg, .webp'
-inputCamara.capture = 'environment-facing'
+inputCamara.capture = 'environment'
 
 
 
