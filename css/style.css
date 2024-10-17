@@ -15,7 +15,7 @@ h1, h2 {
 
 /* Header */
 header {
-    background-color: #f8f8f8;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
     padding: 20px;
     position: fixed;
     top: 0;
@@ -25,10 +25,12 @@ header {
 
 h1 {
     margin: 0;
+    
     left: 50%;
     transform: translateX(-35%);
     font-size: 24px;
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    font-weight: bold;
+    background: #f8f8f8;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
