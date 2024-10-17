@@ -3,7 +3,7 @@
     "name":"Minstagram fotos",
     "version":"1.0.1",
     "start_url": "/index.html",
-    "background_color":"#bc1888",
+    "background_color":"#f09433",
     "theme_color":"#f09433",
     "description":"Es una app de prueba",
     "scope":"/",
