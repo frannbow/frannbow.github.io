@@ -5,6 +5,7 @@ const dialogo = document.querySelector('#dialogo')
 const btnCancelar = document.querySelector('#btnCancelar')
 const btnSubir = document.querySelector('#btnSubir')
 const nuevaimg = document.querySelector('img#nuevaimg')
+const nuevotitulo = document.querySelector('input#newtitulo')
 
 const posts = []//guardo los posts de forma local, usar esto en lugar de posting para tener datos de API
 
@@ -62,26 +63,26 @@ function obtenerPosts(){
 
 function generadorCard(post){
     //reempplazar posting.id y demas por el json que contenga los posts
-    return `<div id="container">
+    return `
                 <div class="card">
                     <h2 id="titulo">${post.title}</h2>
                     <img id="foto" src=${post.img} alt="Imagen genérica">
                     <p id="fecha-hora">Fecha y hora:${post.fecha_hora}</p>
                     
                 </div>
-            </div>`
+            `
 }
 function noPost(){
     const main = document.querySelector('main')
     main.className = 'nopost'
     return `
-                <div id="container">
+  
             <div class="card">
                 <h2 id="titulo">No tiene fotografias cargadas</h2>
                 <img id="foto" src="/img/Image-not-load.png" alt="Imagen genérica">
                 <p id="fecha-hora"><span id="fecha-hora"></span></p>
             </div>
-        </div>
+
     `
 }
 
@@ -91,6 +92,7 @@ function crearPosts (){
     let cardPosts=''
     //podemos vaciar el contenedor con contenedor.innerHTML = '' para evitar que haya datos duplicados
    if(posts.length > 0){
+    console.log(cardPosts)
     contenedor.innerHTML = ''
         posts.forEach((post) => {
             cardPosts += generadorCard(post)
@@ -104,19 +106,10 @@ function crearPosts (){
 //configurar ids para pagina de previsualizacion de imagen
 
 
-
-
-
-
-
 //------------------CARGA DE POST A API ------------------//
 
 
-
-
-
-
-function  cargarPost(){
+function  subirPost(){
     const preimg=convertirAbase64()
     const nuevoposteo = {
         title: document.querySelector('#newtitulo').value,
@@ -143,9 +136,10 @@ function  cargarPost(){
         }
     })
     .then((data)=>{
-        //almaceno los datos de forma local para mostrarlos en el home, verificar el espacio que consume
         dialogo.close()
+        posts.length = 0
         obtenerPosts()
+        
     })// una vez que se cargue el post de la API a la variable local ejecuto obtener post para mostrarlo en e home, se puede optimizar?*
     .catch((error)=>console.log(error))
 }
@@ -160,27 +154,27 @@ function convertirAbase64() {
     const ctx = canvas.getContext('2d')
     //el metodo drawImage dibuja la imagen dentro del conetxto 2d indicado previamente. Necesita de coordenadas de inicio y fin, en esta caso asignaremos a coordenadas finales el ancho y alto de la imagen
     ctx.drawImage(nuevaimg, 0, 0, nuevaimg.width, nuevaimg.height)
-    console.log(canvas.width,canvas.height)
-    console.log(canvas)
     return canvas.toDataURL('image/webp')
 
 }
-/*function convertirAbase64A(imagen) {
-    const canvas = document.createElement('canvas') // Lienzo 
-    canvas.width = imagen.width
-    canvas.height = imagen.height
-
-    const ctx = canvas.getContext('2d')
-    //el metodo drawImage dibuja la imagen dentro del conetxto 2d indicado previamente. Necesita de coordenadas de inicio y fin, en esta caso asignaremos a coordenadas finales el ancho y alto de la imagen
-    ctx.drawImage(imagen, 0, 0, imagen.width, imagen.height)
-   
-    console.log(canvas)
-    return canvas.toDataURL('image/webp')
-
-}*/
 
 
+//-------------------deshabilitar boton subir ------------------//
+window.addEventListener('offline',()=>{
+    const imgoffline = document.querySelector('img#nuevaimg').src
+    btnSubir.disabled = true
+    localStorage.setItem('titulo', nuevotitulo.value)
+    localStorage.setItem('img', imgoffline)
+})
+window.addEventListener('online', ()=>{
+    console.log("se establecio la conexion")
+    btnSubir.disabled = false
 
+})
+ window.addEventListener('load', ()=> {
+    nuevotitulo.value= localStorage.getItem('titulo')
+    nuevaimg.src= localStorage.getItem('img')
+ })
 
 
 botonCamara.addEventListener('click', ()=>inputCamara.click())
@@ -191,7 +185,10 @@ inputCamara.addEventListener('change',()=>{
 })
 
 btnCancelar.addEventListener('click', ()=> dialogo.close() )
-btnSubir.addEventListener('click',()=>cargarPost())
+btnSubir.addEventListener('click',()=>{
+    subirPost()
+    localStorage.clear()
+})
 
 window.onload = obtenerPosts()
 
