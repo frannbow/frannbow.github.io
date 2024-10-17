@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minstagram</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="manifest" href="manifest.json">k
+    <!--reemplazar posteos.js por la api correspondiente-->
+    <script src="js/posteos.js"></script>
+    <script defer src="/js/main.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Minstagram</h1>
+    </header>
+
+    <main>
+        <div id="container">
+          <!--
+             <div class="card">
+                <h2 id="titulo">Título de la imagen</h2>
+                <img id="foto" src="/img/Image-not-load.png" alt="Imagen genérica">
+                <p id="fecha-hora"><span id="fecha-hora"></span></p>
+            </div>
+          --> 
+        </div>
+        <dialog id="dialogo">
+            <h2>Nuevo post</h2>
+            <input type="text" id="newtitulo" autocomplete="off">
+            <img id="nuevaimg" src="">
+            <div id="botones">
+                <button id="btnCancelar" class="button button-outline">CANCELAR</button>
+                <button id="btnSubir" class="button">Subir</button>
+            </div>
+        </dialog>
+    </main>
+
+    <footer>
+        <div id="botonCamara"class="footer-container">
+            <img src="img/camara-64.png" alt="Logo de cámara" class="camera-logo">
+        </div>
+    </footer>
+
+</body>
+</html>
